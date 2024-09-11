@@ -1,38 +1,53 @@
-//Peça ao usuário digitar um número
-let numero = prompt("Digite um número");
-//converta para número
-numero = parseFloat(numero);
-//crie uma variavel output
-let output = document.querySelector("#output");
-//Inserir número no browser
-output.innerHTML = numero;
-//Criar a função escreva(){}
-function escreva(){
-    let output = document.querySelector("#output")
+let numero = "";
+
+function reset(){
+    let output = document.querySelector("#output");
+    numero = "";
     output.innerHTML = numero;
 }
-function calcular(calcule){
-    //crie uma variavel indice
-    let indice = prompt("Digite outro número")
-    //converta para número
-    indice = parseFloat(indice)
-    //usar switch para especificar a operação
-    switch(calcule){
-        case "+":
-            numero += indice;
-            break;
-        case "-":
-            numero -= indice;
-            break;
-        case "*":
-            numero *= indice;
-            break;
-        case "/":
-            numero /= indice;
-            break;
-        case "reset":
-        numero = indice;
 
+function criar(){
+    let output = document.querySelector("#output");
+    if(numero === ""){
+        numero = parseFloat(prompt("Digite um número"));
+        output.innerHTML = numero;
     }
-    escreva();
+    else{
+        alert("Número existante ou NaN, clique no botão de reset");
+    }
+}
+
+function calcular(calcule){
+    if(numero == "" || isNaN(numero)){
+        alert("Crie um número para continuar");
+    }
+    else{
+        let n2 = parseFloat(prompt("Digite um número para efutar a operação"));
+        if(numero != ""){
+            switch(calcule){
+                case "+":
+                    numero += n2;
+                    break;
+                case "-":
+                    numero -= n2;
+                    break;
+                case "*":
+                    numero *= n2;
+                    break;
+                case "/":
+                    if(n2 == 0){
+                        alert("Impossível dividir o número 0");
+                    }
+                    else{
+                        numero /= n2;
+                    }
+            }
+        }
+    else{
+        alert("Crie um número para continuar")
+    }
+    }
+
+    let output = document.querySelector("#output");
+    output.innerHTML = numero;
 }
